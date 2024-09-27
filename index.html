@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Doze.studio</title>
+    <style>
+        html.lenis, html.lenis body {
+      height: auto;
+    }
+
+    .lenis.lenis-smooth {
+        scroll-behavior: auto !important;
+}
+
+      .lenis.lenis-smooth [data-lenis-prevent] {
+        overscroll-behavior: contain;
+      }
+
+      .lenis.lenis-stopped {
+        overflow: hidden;
+      }
+
+      .lenis.lenis-smooth iframe {
+        pointer-events: none;
+        }
+    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <div class="w-full bg-zinc-900">
+      <div class="parent w-full relative h-[1000vh]">
+        <div class="w-full h-screen sticky top-0 left-0">
+          <canvas class="w-full h-screen" id="frame"></canvas>
+          <div class="absolute animate1 z-[2] text-white bottom-10 left-10">
+            <h1 class="leading-20 font-[100] text-3xl">© 2024 DOZE STD</h1>
+            <h1 class="text-3xl">SHAPING BRANDS - CRAFTING MOTION</h1>
+          </div>
+          <div
+            class="absolute animate2 flex z-[2] text-white bottom-10 w-1/2 right-10 text-right opacity-0"
+          >
+            <h1 class="leading-20 font-[100] uppercase text-6xl">
+              TRANSFORMING VISIONS
+            </h1>
+            <h1 class="text-xl w-1/2">
+              Building identity and inspiring action. Sculpting digital
+              experiences that resonate.
+            </h1>
+          </div>
+          <div
+            class="absolute animate3 z-[2] text-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center opacity-0"
+          >
+            <h1 class="leading-20 font-[100] uppercase text-7xl">
+              Elevating Aesthetics
+            </h1>
+            <h1 class="text-xl">
+              Crafting solutions and exploring new horizons. Evolving narratives
+              and elevating aesthetics in every project.
+            </h1>
+          </div>
+          <div
+            class="absolute z-[2] panelism text-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center text-6xl tracking-tighter opacity-0"
+          >
+            ©panelism
+            <span class="line w-10 h-1 bg-white inline-block"></span>2048
+          </div>
+          <div
+            class="w-1/3 panel translate-x-full h-screen bg-white absolute right-0 top-0 z-[2] p-10"
+          >
+            <h3 class="panelelem text-xl font-[100]">©️ 2024 Doze.Std</h3>
+            <p class="panelelem mt-10 text-xl">
+              <b> Sculpting digital</b> <br /><br />
+              Transforming Visions into digital realities. Weaving stories that
+              captivate and innovate. Exploring new possibilities with a focus
+              on narrative evolution. Crafting solutions that engage and
+              elevate.
+            </p>
+            <button
+              class="panelelem border-[1px] px-3 py-2 border-[#555] font-[100] mt-6"
+            >
+              Get Reviews -
+            </button>
+
+            <div class="panelelem absolute bottom-10">
+              <h3 class="text-xl">Innovating Design</h3>
+              <p class="text-sm mt-3">
+                Connecting ideas to foster creativity. Designing impactful
+                experiences that resonate. Feel free to mix and match these
+                sections to suit your website's design needs!
+              </p>
+              <button
+                class="bg-black text-white px-7 text-sm mt-4 py-4 font-[100] capitalize"
+              >
+                experience
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="w-full p-10 bg-white footer">
+        <h1 class="text-7xl font-medium tracking-tighter">
+          ® My Recent Works.
+        </h1>
+        <div class="w-[60%] headings p-3 flex flex-col gap-8 mt-24">
+          <h3 class="text-6xl"">
+            Frame-Sequence-Animation
+          </h3>
+          <h3 class="text-6xl">Printify-clone</h3>
+          <h3 class="text-6xl">ChokoBar-web</h3>
+          <h3 class="text-6xl">Elegant-Craft</h3>
+          <h3 class="text-6xl">Photo-Album</h3>
+          <h3 class="text-6xl">Image-Slider</h3>
+          <h3 class="text-6xl">Mahindra-thar-blog </h3>
+          <h3 class="text-6xl">Foody-Shop</h3>
+          <h3 class="text-6xl">CokaCola-clone</h3>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
+      integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"
+      integrity="sha512-onMTRKJBKz8M1TnqqDuGBlowlH0ohFzMXYRNebz+yOcc5TQr/zAKsthzhuv0hiyUKEiQEQXEynnXCvNTOk50dg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script> 
+    <script>
+      gsap.registerPlugin(ScrollTrigger);
+      const canvas = document.querySelector("canvas");
+      const context = canvas.getContext("2d");
+
+      const frames = {
+        currentIndex: 0,
+        maxIndex: 1345,
+      };
+
+      let imageLoaded = 0;
+      const images = [];
+      function preloadImage() {
+        for (let i = 1; i <= frames.maxIndex; i++) {
+          const imageUrl = `./awwward/frame_${i
+            .toString()
+            .padStart(4, "0")}.jpg`;
+          const img = new Image();
+          img.src = imageUrl;
+          img.onload = () => {
+            imageLoaded++;
+            if (imageLoaded === frames.maxIndex) {
+              console.log("All images Loaded");
+              loadImage(frames.currentIndex);
+              startAnimation();
+            }
+          };
+          images.push(img);
+        }
+      }
+
+      function loadImage(index) {
+        if (index >= 0 && index <= frames.maxIndex) {
+          const img = images[index];
+          canvas.width = window.innerWidth;
+          canvas.height = window.innerHeight;
+
+          const scaleX = canvas.width / img.width;
+          const scaleY = canvas.height / img.height;
+          const scale = Math.max(scaleX, scaleY);
+
+          const newWidth = img.width * scale;
+          const newHeight = img.height * scale;
+
+          const offsetX = (canvas.width - newWidth) / 2;
+          const offsetY = (canvas.height - newHeight) / 2;
+
+          context.clearRect(0, 0, canvas.width, canvas.height);
+          context.imageSmoothingQuality = "high";
+          context.imageSmoothingEnabled = true;
+
+          context.drawImage(img, offsetX, offsetY, newWidth, newHeight);
+          frames.currentIndex = index;
+        }
+      }
+
+      function startAnimation() {
+        var tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: ".parent",
+            start: "top top",
+            scrub: 2,
+            end: "bottom bottom",
+            // markers: true,
+          },
+        });
+
+        function updateFrame(index) {
+          return {
+            ease: "linear",
+            currentIndex: index,
+            onUpdate: function () {
+              loadImage(Math.floor(frames.currentIndex));
+            },
+          };
+        }
+        tl.to(frames, updateFrame(100), "first")
+          .to(".animate1", { opacity: 1 }, "first")
+
+          .to(frames, updateFrame(200), "second")
+          .to(".animate1", { opacity: 0 }, "second")
+
+          .to(frames, updateFrame(300), "third")
+          .to(".animate2", { opacity: 1 }, "third")
+
+          .to(frames, updateFrame(400), "fourth")
+          .to(".animate2", { opacity: 0 }, "fourth")
+
+          .to(frames, updateFrame(500), "fifth")
+          .to(".animate3", { opacity: 1 }, "fifth")
+
+          .to(frames, updateFrame(600), "sixth")
+          .to(".animate3", { opacity: 0 }, "sixth")
+
+          .to(frames, updateFrame(700), "seventh")
+          .to(".panel", { x: "0%", ease: "expo" }, "seventh")
+
+          .to(frames, updateFrame(700), "eighth")
+          .to(".panel", { x: "0%", ease: "expo" }, "eighth")
+
+          .to(frames, updateFrame(800), "ninth")
+          .to(".panel", { opacity: 0, ease: "linear" }, "ninth")
+
+          .to(frames, updateFrame(900), "tenth")
+          .to("canvas", { scale: 0.5, ease: "linear" }, "tenth")
+
+          .to(frames, updateFrame(1000), "eleventh")
+          .to(".panelism", { opacity: 1, ease: "expo" }, "eleventh")
+
+          .to(frames, updateFrame(1100), "eleventh")
+          .to(".panelism span", { width: 200, ease: "expo" }, "eleventh")
+
+          .to(frames, updateFrame(1200), "twelvth")
+          .to("canvas", { scale: 1, ease: "linear" }, "twelvth")
+
+          .to(frames, updateFrame(1330), "thirteenth")
+          .to(".panelism", { scale: 2, ease: "circ" }, "thirteenth");
+      }
+
+      const lenis = new Lenis()
+
+      function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      }
+
+requestAnimationFrame(raf)
+
+      preloadImage();
+
+      window.addEventListener("resize", function () {
+        loadImage(Math.floor(frames.currentIndex));
+      });
+
+      document.querySelectorAll(".headings h3").forEach((elem) => {
+        gsap.from(elem, {
+          scrollTrigger: {
+            trigger: elem,
+            start: "top 90%",
+            end: "bottom 20%",
+            scrub: 2,
+          },
+          opacity: 0.3,
+        });
+      });
+    </script>
+  </body>
+</html>
